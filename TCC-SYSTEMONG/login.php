@@ -5,7 +5,7 @@ session_start();
 $host = "localhost";
 $db   = "bd_ong"; // nome do banco de dados criado
 $user = "root";    // Usuário do MySQL
-$pass = "root";    //senha 
+$pass = "root";    //senha padrao do mysql etec
 
 
 // Criar conexão
@@ -17,16 +17,16 @@ if ($conn->connect_error) {
 }
 
 // Verifica se formulário foi enviado corretamente
-if (!isset($_POST['email'], $_POST['senha'])) {
+if (!isset($_POST['email'], $_POST['Senha'])) {
     header("Location: gestao.php?error=preencha_todos_campos");
     exit;
 }
 
 $email = $_POST['email'];
-$senha = $_POST['senha'];
+$senha = $_POST['Senha'];
 
 // Prepara consulta segura
-if ($stmt = $conn->prepare("SELECT senha, tipo_usuario, nm_usuario FROM tb_usuarios WHERE email = ?")) {
+if ($stmt = $conn->prepare("SELECT Senha, tipo_usuario, nm_usuario FROM tb_usuarios WHERE email = ?")) {
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();

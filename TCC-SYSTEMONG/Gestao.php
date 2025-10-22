@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gestão</title>
     <link rel="stylesheet" href="gestao.css">
 
 </head>
@@ -22,6 +22,8 @@
 </div>
 <h1>GESTÃO</h1>
 <P>Área Reservada Apenas para Administradores</P>
+
+
 
 <div class="acesso-gestao">
 <?php
@@ -51,8 +53,8 @@
     <div class="login">
       <form action="login.php" method="POST" class="login">
    
-        <label for="Email">Email</label>
-        <input type="text" name="Email" id="Email" required>
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" required>
 
     </div>
     <div class="Senha">
@@ -83,7 +85,7 @@
     <div class="formas-contato">
       <h1>Formas de Contato</h1>
       <div class="whatsapp"><a href="https://www.flaticon.com/br/icones-gratis/whatsapp" title="whatsapp ícones" target="_blank"><img src="img/whatsapp (1).png" alt=""></a><p style="color: black;">+55 13 99638-4626</p></div>
-      <div class="email">
+      <div class="Email">
         <a href="https://www.flaticon.com/br/icones-gratis/gmail" title="gmail ícones" target="_blank"><img src="img/gmail.png" alt=""></a>
         <p>associacaotiajumongagua@gmail.com</p>
       </div>

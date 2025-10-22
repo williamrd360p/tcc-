@@ -148,7 +148,7 @@ body{
     text-align: justify;
 }
 
-.insta, .facebook, .youtube, .whatsapp, .email{
+.insta, .facebook, .youtube, .whatsapp, .Email{
     display: flex;
     margin-top: 3vh;
 }
