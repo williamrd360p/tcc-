@@ -376,7 +376,6 @@ a{
 /* Lista lateral de eventos */
 .eventos-lado {
   position: fixed;
-  right: 20px;
   top: 100px;
   width: 250px;
   background: #fff;
@@ -424,13 +423,13 @@ a{
 }
 
 .eventos-lateral-container{
-    margin-top: 150px;
-    margin-left: 120px;
+margin-right: -200px;
+
 }
 
 .eventos-laranja{
+  margin-left: 560px;
     padding: 10px;
-    padding-right: 10px;
     background-color: rgb(255, 182, 86);
     height: 100%;
     width: 29vh;
@@ -447,7 +446,7 @@ a{
     border: 2px solid black;
 }
 
-  @media (max-width:1600px){
+  @media (max-width:1500px){
     .navbar{
         height: 95vh
     }

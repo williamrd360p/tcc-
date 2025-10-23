@@ -13,9 +13,10 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'administ
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela Inicial - Sistema MONG</title>
-    <link rel="stylesheet" href="telainicial-sistema.css">
+    <title>Alunos - Sistema MONG</title>
+    <link rel="stylesheet" href="alunos.css">
     <script src="sistema.js" defer></script>
+    <script src="backend.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -64,7 +65,7 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'administ
                     <a href="https://www.flaticon.com/free-icons/user" title="user icons" target="_blank"><img src="img/account.png" alt="">
                     </a><button id="perfilBtn">Perfil</button></li>
                 <li><a href="https://www.flaticon.com/free-icons/account" title="account icons" target="_blank"><img src="img/exit.png" alt=""></a>
-                    <a href="index.html"><button>Sair da conta</button></a></li>
+                    <a href="index.html"><button>Sair da Conta</button></a></li>
             </ul>
         </div>
 </div>
@@ -77,70 +78,47 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'administ
         <p style="margin-top: 7px;" id="nome-perfil">Gestor</p>
     </div>
 
-    <div class="conteudo">
-    <div class="topo">
-        <h1>Sistema<br>Espaço Tia Jú</h1>
+    <div class="container-alunos">
+        <h1>Alunos</h1>
+        <div class="lista-alunos">
+            <div class="alunos-cadastrados">    
+                <img src="img/user_7324850.png" alt="">
+                <p>Nome do Aluno Cadastrado</p>
+                <button class="excluir">Excluir</button>
+                <button class="editar">Editar</button>
+            </div>
+            <button class="cadastrar-alunos">+Cadastrar Alunos</button>
+        </div>
     </div>
 
-    <div class="cards">
-        <div class="flex">
-        <div class="card"> 
-            <div class="card-flex"><a href="https://www.flaticon.com/free-icons/target" title="target icons"><img src="img/audience.png" alt=""></a>
-            <p class="numero" id="qtd-alunos" style="margin-left: 5px;">--</p></div>
-            <p>Alunos cadastrados</p>
-        </div>
-        <div class="card">
-            <div class="card-flex"><a href="https://www.flaticon.com/free-icons/care" title="care icons"><img src="img/love1.png" alt=""></a>
-            <p class="numero" id="qtd-voluntarios">--</p></div>
-            <p>Voluntários</p>
-        </div>
-        <div class="card"> 
-            <div class="card-flex"><a href="https://www.flaticon.com/free-icons/businessman" title="businessman icons"><img src="img/manager.png" alt=""></a><p class="numero" id="qtd-admins">--</p></div>
-            <p>Administradores</p>
-        </div>
-    </div>
-    <div class="flex1">
-        <div class="card"> 
-            <div class="card-flex"><a href="https://www.flaticon.com/free-icons/businessman" title="businessman icons"><img src="img/event.png" alt=""></a><p class="numero" id="qtd-eventos">--</p></div>
-            <p>Eventos</p>
-        </div>
-        <div class="card"> 
-            <div class="card-flex"><a href="https://www.flaticon.com/free-icons/annotation" title="annotation icons"><img src="img/text.png"></a><p class="numero" id="qtd-anotacoes">--</p></div>
-            <p>Anotações</p>
-        </div>
-    </div>
-    </div>
 
-    <div class="evento">
-        <h3>Próximo evento:</h3>
-        <div class="capa-evento">
-            <span class="placeholder-text">Sem eventos próximos</span>
-            <img id="imagem-evento" src="" alt="Capa do evento">
-        </div>
-        <p id="nome-evento">Nome do evento</p>
-        <small id="data-evento" style="font-size: 2rem;">--/--/----</small>
-    </div>
+<div id="modal-cadastro-aluno" class="modal">
+    <div class="modal-content">
+        <span id="fechar-cadastro-aluno" class="fechar">&times;</span>
+        <h2>Cadastro de Aluno</h2>
+        <form id="form-cadastro-aluno">
+<div class="foto-perfil-cadastro">
+    <img id="img-aluno" src="img/user_7324850.png" alt="Foto do Aluno" />
+    <input type="file" id="foto-aluno" accept="image/*" style="display: none;">
 </div>
 
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-      <span class="close" id="closeBtn">&times;</span>
-      <form class="login-form">
-        <img id="foto-perfil" src="img/user_7324850.png" alt="Foto do perfil">
-      <label for="upload-perfil2" class="estilizar-img">
-    Adicionar imagem
-      </label>
-      <input type="file" id="upload-perfil2" accept="image/*" hidden>
-        <label for="text">Nome</label>
-        <input type="text" id="Nome-exibido" required />
-        <label for="date">Data de nascimento</label>
-        <input type="date">
-        <label for="name">Sua descrição</label>
-        <input type="text" placeholder="">
-        <button type="submit">Salvar perfil</button>
-      </form>
+
+            <label for="nome-aluno">Nome do Aluno</label>
+            <input type="text" id="nome-aluno" required>
+
+            <label for="cpf-aluno">CPF</label>
+            <input type="text" id="cpf-aluno" required>
+
+            <label for="nasc-aluno">Data de Nascimento</label>
+            <input type="date" id="nasc-aluno" required>
+
+            <label for="responsavel-aluno">Nome do Responsável</label>
+            <input type="text" id="responsavel-aluno" required>
+
+            <button type="submit">Adicionar Aluno</button>
+        </form>
     </div>
-  </div>
+</div>
 
 </body>
 </html>

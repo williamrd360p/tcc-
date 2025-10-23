@@ -21,7 +21,7 @@ if (!isset($_POST['email'], $_POST['Senha'])) {
     header("Location: gestao.php?error=preencha_todos_campos");
     exit;
 }
-
+// identificar qual o email e senha via post (vai puxar o que eu colocar nos campos email e senha em gestao.php no form de login)
 $email = $_POST['email'];
 $senha = $_POST['Senha'];
 

@@ -13,8 +13,8 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'administ
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tela Inicial - Sistema MONG</title>
-    <link rel="stylesheet" href="telainicial-sistema.css">
+    <title>Voluntário - Sistema MONG</title>
+    <link rel="stylesheet" href="voluntario.css">
     <script src="sistema.js" defer></script>
 </head>
 <body>
@@ -77,70 +77,89 @@ if (!isset($_SESSION['tipo_usuario']) || $_SESSION['tipo_usuario'] !== 'administ
         <p style="margin-top: 7px;" id="nome-perfil">Gestor</p>
     </div>
 
-    <div class="conteudo">
-    <div class="topo">
-        <h1>Sistema<br>Espaço Tia Jú</h1>
+    <div class="voluntarios">
+        <h1>Voluntários</h1>
+        <div class="lista-voluntarios">
+            <div class="voluntario-cadastrado">
+                <img src="img/user_7324850.png" alt="">
+                <p>Nome do voluntário cadastrado</p>
+                <button class="excluir">Excluir</button>
+                <button class="editar">Editar</button>
+            </div>
+            <button class="cadastro">+Cadastrar voluntário</button>
+        </div>
     </div>
 
-    <div class="cards">
-        <div class="flex">
-        <div class="card"> 
-            <div class="card-flex"><a href="https://www.flaticon.com/free-icons/target" title="target icons"><img src="img/audience.png" alt=""></a>
-            <p class="numero" id="qtd-alunos" style="margin-left: 5px;">--</p></div>
-            <p>Alunos cadastrados</p>
-        </div>
-        <div class="card">
-            <div class="card-flex"><a href="https://www.flaticon.com/free-icons/care" title="care icons"><img src="img/love1.png" alt=""></a>
-            <p class="numero" id="qtd-voluntarios">--</p></div>
-            <p>Voluntários</p>
-        </div>
-        <div class="card"> 
-            <div class="card-flex"><a href="https://www.flaticon.com/free-icons/businessman" title="businessman icons"><img src="img/manager.png" alt=""></a><p class="numero" id="qtd-admins">--</p></div>
-            <p>Administradores</p>
-        </div>
-    </div>
-    <div class="flex1">
-        <div class="card"> 
-            <div class="card-flex"><a href="https://www.flaticon.com/free-icons/businessman" title="businessman icons"><img src="img/event.png" alt=""></a><p class="numero" id="qtd-eventos">--</p></div>
-            <p>Eventos</p>
-        </div>
-        <div class="card"> 
-            <div class="card-flex"><a href="https://www.flaticon.com/free-icons/annotation" title="annotation icons"><img src="img/text.png"></a><p class="numero" id="qtd-anotacoes">--</p></div>
-            <p>Anotações</p>
-        </div>
-    </div>
-    </div>
-
-    <div class="evento">
-        <h3>Próximo evento:</h3>
-        <div class="capa-evento">
-            <span class="placeholder-text">Sem eventos próximos</span>
-            <img id="imagem-evento" src="" alt="Capa do evento">
-        </div>
-        <p id="nome-evento">Nome do evento</p>
-        <small id="data-evento" style="font-size: 2rem;">--/--/----</small>
-    </div>
-</div>
-
-<div id="loginModal" class="modal">
+  <!-- Estrutura do Modal -->
+  <div id="cadastroModal" class="modal">
     <div class="modal-content">
-      <span class="close" id="closeBtn">&times;</span>
-      <form class="login-form">
-        <img id="foto-perfil" src="img/user_7324850.png" alt="Foto do perfil">
-      <label for="upload-perfil2" class="estilizar-img">
-    Adicionar imagem
-      </label>
-      <input type="file" id="upload-perfil2" accept="image/*" hidden>
-        <label for="text">Nome</label>
-        <input type="text" id="Nome-exibido" required />
-        <label for="date">Data de nascimento</label>
-        <input type="date">
-        <label for="name">Sua descrição</label>
-        <input type="text" placeholder="">
-        <button type="submit">Salvar perfil</button>
+      <span class="close">&times;</span>
+
+      <form>
+        <!-- Imagem preview -->
+        <div class="preview-container">
+          <img id="preview" src="img/user_7324850.png" alt="Foto do voluntário">
+        </div>
+
+        <!-- Botão para trocar imagem -->
+        <button type="button" class="upload-btn" id="uploadBtn">Adicionar imagem</button>
+        <input type="file" id="imagem" accept="image/*">
+
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" placeholder="Digite o nome completo">
+        </div>
+
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input type="text" id="cpf" placeholder="000.000.000-00">
+        </div>
+
+        <div class="form-group">
+          <label for="nascimento">Data de Nascimento</label>
+          <input type="date" id="nascimento">
+        </div>
+
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input type="tel" id="telefone" placeholder="(00) 00000-0000">
+        </div>
+
+        <button type="submit" class="submit-btn">Adicionar Voluntário</button>
       </form>
     </div>
   </div>
+  
+  <script>
+    const modal = document.getElementById("cadastroModal");
+    const btn = document.querySelector(".cadastro");
+    const span = document.querySelector(".close");
+    const imagemInput = document.getElementById("imagem");
+    const preview = document.getElementById("preview");
+    const uploadBtn = document.getElementById("uploadBtn");
 
+    btn.onclick = () => modal.style.display = "flex";
+    span.onclick = () => modal.style.display = "none";
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Clicar no botão aciona o input file
+    uploadBtn.onclick = () => imagemInput.click();
+
+    // Preview da imagem escolhida
+    imagemInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          preview.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
 </body>
 </html>
